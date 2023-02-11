@@ -13,7 +13,7 @@ if 'page' not in st.session_state:
 
 #initialize Session State
 def init_SS():
-    st.session_state["q_sum"] = 0 #回答数
+    st.session_state["q_sum"] = 1 #回答数
     st.session_state["answered"] = list[int] #問題番号
     st.session_state["correct"] = dict[int,list[bool,str]] #keyが問題番号 valueは正誤とユーザの解答のリスト
     st.session_state["page"] = "start" #start question result finish
@@ -28,7 +28,9 @@ def num_random():
     quedict = {}
     for i in range(10):
         quedict[numset[i]] = [False, ""]
-    st.session_state["answered"] = numset
+    # 引っ張ってきた問題のデータベースのIDのリスト
+    st.session_state["answered"] = numset 
+    
     st.session_state["correct"] = quedict
 
 def onStart():
@@ -42,7 +44,7 @@ def onStart():
 nowpage = st.session_state["page"]
 if nowpage == "start":
     st.title('AI speculation quiz')
-    st.text('面白い法律をStableDiffusionで画像にしました。内容を推測してください')
+    st.text("Stable Diffusion で面白い問題を作りました。挑戦してみてください")
     st.button("START",key="startbtn", on_click=onStart)
 elif nowpage == "question":
     question()
@@ -50,21 +52,4 @@ elif nowpage == "result":
     result()
 else:
     finish()
-
-# image = Image.open('sample.png')
-# st.image(image)
-
-# with st.form(key='profile_form'):
-#     ans=st.radio(
-#         'この法律の内容を答えなさい',
-#         ('ワニを消火栓につないではいけない','ワニに水を飲ませてはいけない','ワニに背中を見せてはいけない')
-#     )
-
-#     submit_button = st.form_submit_button('送信')
-
-# if submit_button :
-#     if ans =='ワニを消火栓につないではいけない':
-#         st.text('正解！')
-#     else:
-#         st.text('だめぇぇぇ！')
 
