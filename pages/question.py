@@ -29,7 +29,7 @@ def question():
         #仮version
         st.text(st.session_state["answered"][q_sum]) # 現在の問題のデータベースのID
         st.text("この法律の内容を答えなさい")
-        image = Image.open('sample.png')
+        image = Image.open('images/sample.png')
         st.image(image)
         ans=st.radio("この法律の内容を答えなさい",("a","b","c"),index=1)
         
