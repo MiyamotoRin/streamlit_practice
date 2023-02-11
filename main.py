@@ -1,5 +1,20 @@
 import streamlit as st
+from google.cloud import firestore
+from google.oauth2 import service_account
 from PIL import Image
+import json
+
+key_dict = json.loads(st.secrets["textkey"])
+creds = service_account.Credentials.from_service_account_info(key_dict)
+db = firestore.Client(credentials=creds, project="streamlit-reddit")
+
+# Create a reference to quiz.
+doc_ref = db.collection("quiz").document("1")
+
+# Then get the data at that reference.
+doc = doc_ref.get()
+
+st.text(doc.to_dict()['statement'])
 
 st.title('AI speculation quiz')
 st.text('面白い法律をStableDiffusionで画像にしました。内容を推測してください')
