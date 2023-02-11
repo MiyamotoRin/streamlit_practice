@@ -1,8 +1,13 @@
 import streamlit as st
 from google.cloud import firestore
 from google.oauth2 import service_account
-from PIL import Image
 import json
+import random
+from PIL import Image
+
+from pages.question import question
+from pages.result import result
+from pages.finish import finish
 
 key_dict = json.loads(st.secrets["textkey"])
 creds = service_account.Credentials.from_service_account_info(key_dict)
@@ -16,21 +21,48 @@ doc = doc_ref.get()
 
 st.text(doc.to_dict()['statement'])
 
-st.title('AI speculation quiz')
-st.text('面白い法律をStableDiffusionで画像にしました。内容を推測してください')
-image = Image.open('sample.png')
-st.image(image)
+if 'page' not in st.session_state:
+    st.session_state['page'] = 'start'
 
-with st.form(key='profile_form'):
-    ans=st.radio(
-        'この法律の内容を答えなさい',
-        ('ワニを消火栓につないではいけない','ワニに水を飲ませてはいけない','ワニに背中を見せてはいけない')
-    )
+#initialize Session State
+def init_SS():
+    st.session_state["q_sum"] = 1 #回答数
+    st.session_state["answered"] = list[int] #問題番号
+    st.session_state["correct"] = dict[int,list[bool,str]] #keyが問題番号 valueは正誤とユーザの解答のリスト
+    st.session_state["page"] = "start" #start question result finish
 
-    submit_button = st.form_submit_button('送信')
+#出題する問題の番号をランダムに10個抽出する
+#session_stateの問題番号のリストとcorrectを初期化
+def num_random():
+    num_set = set()
+    while len(num_set) < 10:
+        num_set.add(random.randint(1,50))
+    numset = list(num_set) #リストに変換
+    quedict = {}
+    for i in range(10):
+        quedict[numset[i]] = [False, ""]
+    # 引っ張ってきた問題のデータベースのIDのリスト
+    st.session_state["answered"] = numset 
+    
+    st.session_state["correct"] = quedict
 
-if submit_button :
-    if ans =='ワニを消火栓につないではいけない':
-        st.text('正解！')
-    else:
-        st.text('だめぇぇぇ！')
+def onStart():
+    init_SS()
+    num_random()
+    #(問題を10問抽出する処理)#
+    #(st.sessionに格納)
+    st.session_state["page"] = "question"
+
+#現在のpageの値によって描画する(実行する)関数が変わる
+nowpage = st.session_state["page"]
+if nowpage == "start":
+    st.title('AI speculation quiz')
+    st.text("Stable Diffusion で面白い問題を作りました。挑戦してみてください")
+    st.button("START",key="startbtn", on_click=onStart)
+elif nowpage == "question":
+    question()
+elif nowpage == "result":
+    result()
+else:
+    finish()
+

@@ -1,1 +1,1 @@
-# streamlit_practice
+# AIで世界の法律を学ぼう！
