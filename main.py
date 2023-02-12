@@ -56,3 +56,14 @@ elif nowpage == "result":
     result()
 else:
     finish()
+
+#共通のCSSの設定
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        .stActionButton {display: none;}
+        .test-id[data-]
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
+
