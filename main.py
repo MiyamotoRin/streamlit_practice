@@ -35,7 +35,7 @@ def num_random():
         num_set.add(random.randint(10,15))
     numset = list(num_set) #リストに変換
     quedict = {}
-    for i in range(10):
+    for i in range(len(numset)):
         quedict[numset[i]] = [False, ""]
     # 引っ張ってきた問題のデータベースのIDのリスト
     st.session_state["answered"] = numset 
