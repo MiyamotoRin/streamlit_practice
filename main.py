@@ -31,11 +31,11 @@ def init_SS():
 #session_stateの問題番号のリストとcorrectを初期化
 def num_random():
     num_set = set()
-    while len(num_set) < 5: #繰り返し回数
-        num_set.add(random.randint(1,15))
+    while len(num_set) < 10: #繰り返し回数
+        num_set.add(random.randint(1,150)%15 + 1)
     numset = list(num_set) #リストに変換
     quedict = {}
-    for i in range(len(numset)):
+    for i in range(10):
         quedict[numset[i]] = [False, ""]
     # 引っ張ってきた問題のデータベースのIDのリスト
     st.session_state["answered"] = numset 
