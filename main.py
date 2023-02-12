@@ -65,4 +65,3 @@ elif nowpage == "result":
     result()
 else:
     finish()
-

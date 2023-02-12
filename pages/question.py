@@ -35,25 +35,3 @@ def question():
         
         with st.form(key='profile_form'):
             st.form_submit_button("decide",on_click=toresult, args=[q_sum, ans])
-        
-
-        
-
-
-                
-        
-    
-
-    # with st.form(key='profile_form'):
-    #     ans=st.radio(
-    #         'この法律の内容を答えなさい',
-    #         ('ワニを消火栓につないではいけない','ワニに水を飲ませてはいけない','ワニに背中を見せてはいけない')
-    #     )
-
-    #     submit_button = st.form_submit_button('送信')
-
-    # if submit_button :
-    #     if ans =='ワニを消火栓につないではいけない':
-    #         st.text('正解！')
-    #     else:
-    #         st.text('だめぇぇぇ！')

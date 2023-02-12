@@ -27,7 +27,3 @@ def result():
         st.button("NEXT", key="nextbtn", on_click=toque)
     else:
         st.button("END", key="endbtn", on_click=tofin)
-        
-
-
-

@@ -25,6 +25,3 @@ def finish():
         #show answer
         st.text(f'{i+1};{ans};{ansstr}')
     st.button("STARTに戻る", key="backbtn", on_click=tostart)
-    
-    
-    
