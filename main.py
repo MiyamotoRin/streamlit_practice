@@ -19,7 +19,7 @@ doc_ref = db.collection("quiz").document("1")
 # Then get the data at that reference.
 doc = doc_ref.get()
 
-st.text(doc.to_dict()['statement'])
+st.text(doc.to_dict()['question'])
 
 if 'page' not in st.session_state:
     st.session_state['page'] = 'start'
