@@ -31,6 +31,3 @@ def finish():
         #show answer
         st.text(f'{i+1}問目：{ans}{ansstr}')
     st.button("STARTに戻る", key="backbtn", on_click=tostart)
-    
-    
-    
