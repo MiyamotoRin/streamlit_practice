@@ -43,7 +43,7 @@ def result():
     st.text(detail)
     
     #次のページ遷移処理(次の問題か問題終了か)
-    if  int(st.session_state["q_sum"]) < 2:
+    if  int(st.session_state["q_sum"]) < 5:
         st.session_state["q_sum"] +=1
         st.button("NEXT", key="nextbtn", on_click=toque)
     else:
