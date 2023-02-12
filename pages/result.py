@@ -8,7 +8,7 @@ def tofin():
     st.session_state["page"]="finish"
 
 def result():
-    image = Image.open("sample.png")
+    image = Image.open("images/sample.png")
     st.image(image)
     nowq = st.session_state["answered"][st.session_state["q_sum"]] #現在の問題を取得
     right = st.session_state["correct"][nowq] #現在の問題の正誤を取得
