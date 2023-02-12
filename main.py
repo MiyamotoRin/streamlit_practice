@@ -9,20 +9,11 @@ from pages.question import question
 from pages.result import result
 from pages.finish import finish
 
-key_dict = json.loads(st.secrets["textkey"])
-creds = service_account.Credentials.from_service_account_info(key_dict)
-db = firestore.Client(credentials=creds)
-
-# Create a reference to quiz.
-doc_ref = db.collection("quiz").document("1")
-
-# Then get the data at that reference.
-doc = doc_ref.get()
-
-st.text(doc.to_dict()['question'])
-
 if 'page' not in st.session_state:
     st.session_state['page'] = 'start'
+
+#サイドバーを隠したい
+st.set_page_config(initial_sidebar_state="collapsed")
 
 #initialize Session State
 def init_SS():
@@ -36,7 +27,7 @@ def init_SS():
 def num_random():
     num_set = set()
     while len(num_set) < 10:
-        num_set.add(random.randint(1,50))
+        num_set.add(random.randint(1,15))
     numset = list(num_set) #リストに変換
     quedict = {}
     for i in range(10):
