@@ -53,7 +53,7 @@ def onStart():
 nowpage = st.session_state["page"]
 if nowpage == "start":
     st.title('AI speculation quiz')
-    st.text("Stable Diffusion で面白い問題を作りました")
+    st.text("Stable Diffusion で世界の面白い法律の問題を作りました")
     st.text("挑戦してみてください")
     start_style = """
             <style>
