@@ -43,6 +43,3 @@ def finish():
     st.dataframe(df,width=800)
     
     st.button("STARTに戻る", key="backbtn", on_click=tostart)
-    
-    
-    
