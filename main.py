@@ -48,7 +48,30 @@ def onStart():
 nowpage = st.session_state["page"]
 if nowpage == "start":
     st.title('AI speculation quiz')
-    st.text("Stable Diffusion で面白い問題を作りました。挑戦してみてください")
+    st.text("Stable Diffusion で面白い問題を作りました")
+    st.text("挑戦してみてください")
+    start_style = """
+            <style>
+            p{
+                font-size: 32px;
+            }
+            div.stButton {
+                margin-top: 3%;
+            }
+            div.stButton > Button {
+                padding: 0.50rem 2.00rem;
+            }
+            div[data-testid="stText"] {
+                margin-top: 5%;
+                font-size: 24px;
+            }
+            h1#ai-speculation-quiz { font-size: 700%; }
+            h1#ai-speculation-quiz > div > a {
+                display: none;
+            }
+            </style>
+            """
+    st.markdown(start_style, unsafe_allow_html=True)
     st.button("START",key="startbtn", on_click=onStart)
 elif nowpage == "question":
     question()
@@ -60,9 +83,14 @@ else:
 #共通のCSSの設定
 hide_menu_style = """
         <style>
-        #MainMenu {visibility: hidden;}
+        #MainMenu {display: none;}
         .stActionButton {display: none;}
-        .test-id[data-]
+        div[data-testid="collapsedControl"] {display: none !important;}
+        section[data-testid="stSidebar"] {display: none !important;}
+        div[data-testid="stVerticalBlock"]{text-align: center}
+        .block-container { margin-top: 5% }
+        section.main > footer { display none; }
+
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)

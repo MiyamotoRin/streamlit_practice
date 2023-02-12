@@ -27,17 +27,19 @@ def result():
     question = doc_dict['question']#答え
 
     image = Image.open("images/" + str(quiz_id) +".png")
-    st.image(image)
+    st.image(image, use_column_width=True)
     nowq = st.session_state["answered"][st.session_state["q_sum"]] #現在の問題を取得
     right = st.session_state["correct"][nowq] #現在の問題の正誤を取得
     
     if right[0]: #正誤で表示する記号の処理
-        st.text("〇")
+        st.subheader(f"{right[1]}は正解！！")#ユーザの回答
     else:
-        st.text("✕")
-    st.text(right[1]) #ユーザの回答
-    st.text(f'正解は。。。{question}')
-    st.text('解説')
+        st.subheader(f"{right[1]}は不正解！！")#ユーザの回答
+        st.subheader('正解は。。。')
+        st.header(f'{question}')
+    # st.text(right[1]) 
+
+    st.subheader('解説')
     st.text(detail)
     
     #次のページ遷移処理(次の問題か問題終了か)

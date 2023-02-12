@@ -44,18 +44,17 @@ def question():
         mistake_3 = doc_dict['mistake_3']
         right = doc_dict['right']
         
-        st.text(quiz_id) # 現在の問題のデータベースのID
-        st.text("この法律の内容を答えなさい")
         image = Image.open('./images/' + str(quiz_id) +'.png')
-        st.image(image)
+        st.header('問題')
+        st.image(image,use_column_width=True)
 
         if not 'selectlist' in st.session_state:
             selection_list=[mistake_1,mistake_2,mistake_3,right]
             random.shuffle(selection_list)
             st.session_state['selectlist'] = tuple(selection_list)
 
-        ans=st.radio("この法律の内容を答えなさい",st.session_state['selectlist'],key="unchi")
-        
+        ans=st.radio("この絵はどんな法律を表しているでしょう？",st.session_state['selectlist'],key="unchi")
+
         with st.form(key='profile_form'):
             st.form_submit_button("decide",on_click=toresult, args=[q_sum, ans, right])
         
