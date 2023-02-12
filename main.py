@@ -4,9 +4,22 @@ from google.oauth2 import service_account
 import json
 import random
 from PIL import Image
+
 from pages.question import question
 from pages.result import result
 from pages.finish import finish
+
+key_dict = json.loads(st.secrets["textkey"])
+creds = service_account.Credentials.from_service_account_info(key_dict)
+db = firestore.Client(credentials=creds)
+
+# Create a reference to quiz.
+doc_ref = db.collection("quiz").document("1")
+
+# Then get the data at that reference.
+doc = doc_ref.get()
+
+st.text(doc.to_dict()['statement'])
 
 if 'page' not in st.session_state:
     st.session_state['page'] = 'start'
