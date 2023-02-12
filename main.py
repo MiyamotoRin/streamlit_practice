@@ -32,7 +32,7 @@ def init_SS():
 def num_random():
     num_set = set()
     while len(num_set) < 5: #繰り返し回数
-        num_set.add(random.randint(10,15))
+        num_set.add(random.randint(1,15))
     numset = list(num_set) #リストに変換
     quedict = {}
     for i in range(len(numset)):
