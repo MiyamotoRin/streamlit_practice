@@ -10,6 +10,13 @@ def tostart():
 
 def finish():
 #show answer
+    correct_count=0
+    for i in range(st.session_state["q_sum"]):
+        nowq=st.session_state["answered"][i + 1]
+        if st.session_state["correct"][nowq][0]==True:
+            correct_count+=1
+    st.text(f'あなたは{st.session_state["q_sum"]}問中{correct_count}問正解です')
+            
     for i in range(st.session_state["q_sum"]):
         # 答えた問題のデータベースのID
         nowq=st.session_state["answered"][i + 1]
