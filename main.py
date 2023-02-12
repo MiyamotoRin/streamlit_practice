@@ -12,8 +12,13 @@ from pages.finish import finish
 if 'page' not in st.session_state:
     st.session_state['page'] = 'start'
 
-#サイドバーを隠したい
-st.set_page_config(initial_sidebar_state="collapsed")
+#ページのレイアウト諸々の設定
+page_icon_image = Image.open('./AISpeculationQuiz_logo.jpg')
+st.set_page_config(
+    page_title= "AISpeculationQuiz",
+    page_icon=page_icon_image,
+    initial_sidebar_state="collapsed" #サイドバーを隠したい
+    )
 
 #initialize Session State
 def init_SS():
