@@ -34,6 +34,7 @@ def num_random():
     while len(num_set) < 10: #繰り返し回数
         num_set.add(random.randint(1,15))
     numset = list(num_set) #リストに変換
+    random.shuffle(numset)
     quedict = {}
     for i in range(10):
         quedict[numset[i]] = [False, ""]
